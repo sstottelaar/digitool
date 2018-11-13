@@ -39,6 +39,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    'kenticocloud-nuxt-module'
   ],
 
   /*
@@ -51,5 +52,8 @@ module.exports = {
     extend(config, ctx) {
       
     }
+  },
+  kenticocloud: {
+    projectId: 'ba55e5f7-e14b-42bc-aaac-63d470ce44ae'
   }
 }
