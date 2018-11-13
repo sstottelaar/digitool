@@ -1,41 +1,45 @@
 <template>
   <section class="container">
-    <h2>{{ msg }}</h2>
+    <h2>Post overview</h2>
     <section>
-      <ul>
-        <li
-          v-for="(post, index) in posts"
-          :key="index">
-          <nuxt-link
-            :to="'/tool/' + post.url_slug.value">
-            {{ post.name.text }}
-          </nuxt-link>
 
-          <span v-if="hasReview(post)">Has review</span>
+      <h2 v-if="loading">Loading...</h2>
 
-        </li>
-      </ul>
+      <card-component
+        v-for="(post, index) in posts"
+        :key="index" :post="post">
+      </card-component>
+
     </section>
   </section>
 </template>
 
 <script>
+import CardComponent from '@/components/CardComponent'
 
 export default {
+  components: {
+    CardComponent
+  },
   data(){
     return {
-      msg: "This is a title",
-      posts: []
+      posts: [],
+      loading: false
     }
   },
   methods: {
     initData() {
+      this.loading = true
+
       // Get data from KC and write to component
       this.$deliveryClient.items()
         .type("post")
         .orderParameter("system.last_modified[desc]")
         .getPromise()
-        .then(response => this.posts = response.items)
+        .then((response) => {
+          this.posts = response.items
+          this.loading = false
+        })
     },
     hasReview(payload) {
       if(payload.article_about_tool.value.length > 12){

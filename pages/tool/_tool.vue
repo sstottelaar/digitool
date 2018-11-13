@@ -2,7 +2,7 @@
   <section class="container">
     <h2 v-if="!loading">{{ post.name.text }}</h2>
 
-    <h2 v-if="loading">Loading</h2>
+    <h2 v-if="loading">Loading...</h2>
 
     <pre>{{ post }}</pre>
   </section>
