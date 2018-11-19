@@ -14,6 +14,7 @@
           </a>
 
           <span v-if="hasReview(post)"> - Has review</span>
+          <span>{{ post.likes }}</span>
         </p>
     </div>
 </template>

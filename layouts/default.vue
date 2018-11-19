@@ -1,9 +1,20 @@
 <template>
   <div>
-    <h1>This is the header</h1>
+    <header-component></header-component>
     <nuxt/>
   </div>
 </template>
+
+<script>
+import HeaderComponent from '@/components/HeaderComponent'
+
+export default {
+  components: {
+    HeaderComponent
+  }
+}
+</script>
+
 
 <style>
 .page-enter-active, .page-leave-active {

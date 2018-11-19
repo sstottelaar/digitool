@@ -39,7 +39,8 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    'kenticocloud-nuxt-module'
+    'kenticocloud-nuxt-module',
+    'bootstrap-vue/nuxt'
   ],
 
   /*

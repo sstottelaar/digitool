@@ -1,30 +1,31 @@
 <template>
-  <section class="container">
-    <h2>Post overview</h2>
-    <section>
+  <b-container>
 
-      <h2 v-if="loading">Loading...</h2>
+    <h2 v-if="loading">Loading...</h2>
 
-      <card-component
-        v-for="(post, index) in posts"
-        :key="index" :post="post">
-      </card-component>
+    <card-component
+      v-else
+      v-for="(post, index) in posts"
+      :key="index" :post="post">
+    </card-component>
 
-    </section>
-  </section>
+  </b-container>
 </template>
 
 <script>
 import CardComponent from '@/components/CardComponent'
+import { db } from '@/plugins/firebase'
 
 export default {
+  name: "Homepage",
   components: {
     CardComponent
   },
   data(){
     return {
       posts: [],
-      loading: false
+      loading: false,
+      firebaseData: []
     }
   },
   methods: {
@@ -38,6 +39,10 @@ export default {
         .getPromise()
         .then((response) => {
           this.posts = response.items
+          return this.getFirebaseData()
+        })
+        .then(() => {
+          this.orderData()
           this.loading = false
         })
     },
@@ -45,6 +50,24 @@ export default {
       if(payload.article_about_tool.value.length > 12){
         return true
       }
+    },
+    getFirebaseData() {
+      return db.collection("posts").get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.firebaseData.push(doc.data())
+          })
+        })
+    },
+    orderData() {
+      this.posts.forEach((post) => {
+        this.firebaseData.forEach(item => {
+          post.likes = 0
+          if(post.system.id === item.id) {
+            post.likes = item.likes
+          }
+        })
+      })
     }
   },
   head: {
