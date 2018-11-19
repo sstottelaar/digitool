@@ -1,13 +1,16 @@
 <template>
   <b-container>
+    <loader-component v-if="loading"></loader-component>
 
-    <h2 v-if="loading">Loading...</h2>
+    <b-row class="mt-3">
 
-    <card-component
-      v-else
-      v-for="(post, index) in posts"
-      :key="index" :post="post">
-    </card-component>
+      <card-component
+        v-if="!loading"
+        v-for="(post, index) in posts"
+        :key="index" :post="post">
+      </card-component>
+
+    </b-row>
 
   </b-container>
 </template>
@@ -15,11 +18,13 @@
 <script>
 import CardComponent from '@/components/CardComponent'
 import { db } from '@/plugins/firebase'
+import LoaderComponent from '@/components/LoaderComponent'
 
 export default {
   name: "Homepage",
   components: {
-    CardComponent
+    CardComponent,
+    LoaderComponent
   },
   data(){
     return {
@@ -82,5 +87,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+body {
+  color: #212529;
+  line-height: 1.5;
+}
 </style>
