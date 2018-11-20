@@ -1,6 +1,57 @@
 <template>
   <b-container>
-    <loader-component v-if="loading"></loader-component>
+    <!-- <loader-component v-if="loading"></loader-component> -->
+
+    <!-- Build external component for loader -->
+    <b-row class="mt-4" v-if="loading">
+      <div class="col-4">
+        <content-loader
+          :height="510"
+          :width="370"
+          :speed="2"
+          primaryColor="#f3f3f3"
+          secondaryColor="#ecebeb"
+        >
+
+          <rect x="0" y="0" rx="0" ry="0" width="370" height="270" />
+          <rect x="0" y="290" rx="0" ry="0" width="230" height="20" />
+          <rect x="0" y="330" rx="0" ry="0" width="270" height="20" />
+          <rect x="0" y="370" rx="0" ry="0" width="260" height="20" />
+        </content-loader>
+      </div>
+
+      <div class="col-4">
+        <content-loader
+          :height="510"
+          :width="380"
+          :speed="2"
+          primaryColor="#f3f3f3"
+          secondaryColor="#ecebeb"
+        >
+
+          <rect x="0" y="0" rx="0" ry="0" width="350" height="270" />
+          <rect x="0" y="290" rx="0" ry="0" width="230" height="20" />
+          <rect x="0" y="330" rx="0" ry="0" width="270" height="20" />
+          <rect x="0" y="370" rx="0" ry="0" width="260" height="20" />
+        </content-loader>
+      </div>
+
+      <div class="col-4">
+        <content-loader
+          :height="510"
+          :width="380"
+          :speed="2"
+          primaryColor="#f3f3f3"
+          secondaryColor="#ecebeb"
+        >
+
+          <rect x="0" y="0" rx="0" ry="0" width="350" height="270" />
+          <rect x="0" y="290" rx="0" ry="0" width="230" height="20" />
+          <rect x="0" y="330" rx="0" ry="0" width="270" height="20" />
+          <rect x="0" y="370" rx="0" ry="0" width="260" height="20" />
+        </content-loader>
+      </div>
+    </b-row>
 
     <b-row class="mt-3">
 
@@ -17,20 +68,20 @@
 
 <script>
 import CardComponent from '@/components/CardComponent'
-import { db } from '@/plugins/firebase'
 import LoaderComponent from '@/components/LoaderComponent'
+import { ContentLoader } from 'vue-content-loader'
 
 export default {
   name: "Homepage",
   components: {
     CardComponent,
-    LoaderComponent
+    LoaderComponent,
+    ContentLoader
   },
   data(){
     return {
       posts: [],
-      loading: false,
-      firebaseData: []
+      loading: false
     }
   },
   methods: {
@@ -44,10 +95,6 @@ export default {
         .getPromise()
         .then((response) => {
           this.posts = response.items
-          return this.getFirebaseData()
-        })
-        .then(() => {
-          this.orderData()
           this.loading = false
         })
     },
@@ -55,24 +102,6 @@ export default {
       if(payload.article_about_tool.value.length > 12){
         return true
       }
-    },
-    getFirebaseData() {
-      return db.collection("posts").get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.firebaseData.push(doc.data())
-          })
-        })
-    },
-    orderData() {
-      this.posts.forEach((post) => {
-        this.firebaseData.forEach(item => {
-          post.likes = 0
-          if(post.system.id === item.id) {
-            post.likes = item.likes
-          }
-        })
-      })
     }
   },
   head: {
@@ -91,5 +120,13 @@ export default {
 body {
   color: #212529;
   line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
