@@ -4,9 +4,9 @@
 
     <!-- Build external component for loader -->
     <b-row class="mt-4" v-if="loading">
-      <div class="col-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <content-loader
-          :height="510"
+          :height="460"
           :width="370"
           :speed="2"
           primaryColor="#f3f3f3"
@@ -20,9 +20,9 @@
         </content-loader>
       </div>
 
-      <div class="col-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <content-loader
-          :height="510"
+          :height="460"
           :width="380"
           :speed="2"
           primaryColor="#f3f3f3"
@@ -36,9 +36,9 @@
         </content-loader>
       </div>
 
-      <div class="col-4">
+      <div class="col-12 col-md-6 col-lg-4">
         <content-loader
-          :height="510"
+          :height="460"
           :width="380"
           :speed="2"
           primaryColor="#f3f3f3"
