@@ -41,7 +41,8 @@ module.exports = {
   */
   modules: [
     'kenticocloud-nuxt-module',
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/axios'
   ],
 
   /*

@@ -8,14 +8,32 @@
         v-if="hasReview(post)"
         :to="'/tool/' + post.url_slug.value"
         :title="'Read review of ' + post.name.text">
-        <img :src="post.screenshot.assets[0].url + '?w=350&h=270'" :alt="post.name.text" class="card-img-top">
+        <img
+          class="card-img-top"
+          sizes="(min-width: 1120px) 350px, (max-width: 1120px) and (min-width: 768px) 350px, (max-width: 768px) and (min-width: 330px) 300px, 250px"
+          :srcset="post.screenshot.assets[0].url + '?w=200&q=75 200w,'
+            + post.screenshot.assets[0].url + '?w=400&q=75 400w,'
+            + post.screenshot.assets[0].url + '?w=600&q=75 600w,'
+            + post.screenshot.assets[0].url + '?w=800&q=75 800w,'
+            + post.screenshot.assets[0].url + '?w=1000&q=75 1000w'"
+          :alt="post.name.text"
+          >
       </nuxt-link>
 
       <a
         v-else
         :href="post.website_url.text"
         :title="'Visit website of ' + post.name.text">
-        <img :src="post.screenshot.assets[0].url + '?w=350&h=270'" :alt="post.name.text" class="card-img-top">
+        <img
+          class="card-img-top"
+          sizes="(min-width: 1120px) 350px, (max-width: 1120px) and (min-width: 768px) 350px, (max-width: 768px) and (min-width: 330px) 300px, 250px"
+          :srcset="post.screenshot.assets[0].url + '?w=200&q=75 200w,'
+            + post.screenshot.assets[0].url + '?w=400&q=75 400w,'
+            + post.screenshot.assets[0].url + '?w=600&q=75 600w,'
+            + post.screenshot.assets[0].url + '?w=800&q=75 800w,'
+            + post.screenshot.assets[0].url + '?w=1000&q=75 1000w'"
+          :alt="post.name.text"
+          >
       </a>
       <!-- /Header Link -->
 
