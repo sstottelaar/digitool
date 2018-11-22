@@ -1,7 +1,7 @@
 <template>
   <b-container>
 
-    <b-row class="mt-3">
+    <b-row class="mt-5">
 
       <card-component
         v-for="(post, index) in posts"
