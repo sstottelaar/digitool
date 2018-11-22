@@ -43,9 +43,9 @@ module.exports = {
     'kenticocloud-nuxt-module',
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/google-tag-manager', {
+    ['@nuxtjs/google-tag-manager', {
       id: 'GTM-TGLJQWL'
-    }
+    }]
   ],
 
   /*
