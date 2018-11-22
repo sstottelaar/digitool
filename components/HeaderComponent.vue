@@ -35,17 +35,19 @@ export default {
 .navbar {
   background-color: #FFF;
   box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.05);
+  padding: 0.75rem 1rem;
 
   .navbar-toggler {
     border: 0;
   }
 
   .nav-link {
-    color: rgba(54, 83, 244, 0.75);
-    font-weight: 500;
+    color: #acafbf;
+    font-weight: 600;
     padding: 0.4rem 0.6rem;
     transition: background-color 200ms ease, box-shadow 200ms ease;
     border-radius: 0.2rem;
+    font-size: 0.9rem;
 
     &:hover,
     &:active,
