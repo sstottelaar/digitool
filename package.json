@@ -14,6 +14,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/google-tag-manager": "^2.1.0",
+    "@nuxtjs/toast": "^3.0.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "cross-env": "^5.2.0",
     "firebase": "^5.5.8",
@@ -21,6 +22,7 @@
     "nuxt": "^2.0.0",
     "rxjs": "^6.3.3",
     "vue-content-loader": "^0.2.1",
+    "vue-feather-icons": "^4.7.1",
     "vue-lazyload": "^1.2.6"
   },
   "devDependencies": {

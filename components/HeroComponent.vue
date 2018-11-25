@@ -2,7 +2,7 @@
   <div class="hero-container">
     <b-container>
       <b-row class="justify-content-center">
-        <b-col class="col-9">
+        <b-col class="col-11 col-md-9">
           <div class="hero-inner">
             <h1 class="hero-title mb-3 text-light text-center">Discover upcoming digital marketing tools</h1>
             <span class="hero-slogan opacity-80 d-block text-light text-center">Digitool is the curated place for online marketing enthusiasts who are looking for the latest digital marketing tools.</span>

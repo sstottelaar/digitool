@@ -8,10 +8,12 @@
         v-if="hasReview(post)"
         :to="'/tool/' + post.url_slug.value"
         :title="'Read review of ' + post.name.text"
-        v-lazy-container="{ selector: 'img' }">
+        target="_blank"
+        >
         <img
           class="card-img-top"
-          :data-src="post.screenshot.assets[0].url + '?w=400&q=75'"
+          src="~/static/loading-asset.svg"
+          v-lazy="getImage() + getImageProps(400, 50)"
           :alt="post.name.text"
           >
       </nuxt-link>
@@ -20,20 +22,24 @@
         v-else
         :href="post.website_url.text"
         :title="'Visit website of ' + post.name.text"
-        v-lazy-container="{ selector: 'img' }">
+        target="_blank"
+        >
         <img
           class="card-img-top"
-          :data-src="post.screenshot.assets[0].url + '?w=400&q=75'"
+          src="~/static/loading-asset.svg"
+          v-lazy="getImage() + getImageProps(400, 50)"
           :alt="post.name.text"
           >
       </a>
       <!-- /Header Link -->
 
+      <!-- Read review block -->
       <nuxt-link
         v-if="hasReview(post)"
         :to="'/tool/' + post.url_slug.value"
         :title="'Read review of ' + post.name.text"
-        class="reviewed">
+        class="reviewed"
+        target="_blank">
         Read review
       </nuxt-link>
 
@@ -44,7 +50,8 @@
         <nuxt-link
           v-if="hasReview(post)"
           :to="'/tool/' + post.url_slug.value"
-          :title="'Read review of ' + post.name.text">
+          :title="'Read review of ' + post.name.text"
+          target="_blank">
           <span class="card-title h5 d-inline-block mt-2 mb-3">{{ post.name.text }}</span>
           <p class="card-text">
             {{ post.short_description.text }}
@@ -54,18 +61,37 @@
         <a
           v-else
           :href="post.website_url.text"
-          :title="'Visit website of ' + post.name.text">
-          <span class="card-title h5 d-inline-block mt-2 mb-3">{{ post.name.text }}</span>
-          <p class="card-text">
-            {{ post.short_description.text }}
-          </p>
+          :title="'Visit website of ' + post.name.text"
+          target="_blank">
+            <span class="card-title h5 d-inline-block mt-2 mb-3">{{ post.name.text }}</span>
+            <p class="card-text">
+              {{ post.short_description.text }}
+            </p>
         </a>
         <!-- /Post body link -->
 
-        <b-badge
-          class="tag mt-3 mb-2 text-light">
-          {{ getCategory(post) }}
-        </b-badge>
+        <div class="mt-3">
+
+          <!-- Tags -->
+          <b-badge
+            class="tag mb-2 text-light">
+            {{ getCategory(post) }}
+          </b-badge>
+
+          <!-- Like a post block -->
+          <div
+            class="likes d-inline-block float-right"
+            v-on:click="likePost(post)"
+          >
+            <thumbs-up-icon
+              width="20"
+              height="20">
+            </thumbs-up-icon>
+            <span class="post-likes">
+              {{ post.likes.count }}
+            </span>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -73,9 +99,14 @@
 </template>
 
 <script>
+import { ThumbsUpIcon } from 'vue-feather-icons'
+
 export default {
   name: "CardComponent",
   props: ["post"],
+  components: {
+    ThumbsUpIcon
+  },
   methods: {
     hasReview(payload) {
       if(payload.article_about_tool.value.length > 12){
@@ -84,6 +115,22 @@ export default {
     },
     getCategory(payload) {
       return payload.category.options[0].name
+    },
+    getImage() {
+      return this.post.screenshot.assets[0].url
+    },
+    getImageProps(width, quality) {
+      return "?w=" + width + "&q=" + quality + "?fm=png&auto=format"
+    },
+    async likePost(payload) {
+      try {
+        this.post.likes.count++
+        this.$toast.show("You liked a tool, awesome! 🤘")
+        await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.id + "/like")
+      } catch (e) {
+        console.log(e)
+        this.$toast.error(e)
+      }
     }
   }
 }
@@ -152,6 +199,28 @@ export default {
       }
     }
 
+    .feather-thumbs-up {
+      stroke: #dee2e6;
+      transition: stroke 200ms ease;
+    }
+
+    .likes {
+      color: #dee2e6;
+      transition: color 200ms ease;
+
+      &:hover {
+        color: #3653f4;
+
+        .feather-thumbs-up {
+          stroke: #3653f4;
+        }
+      }
+    }
+
+    .post-likes {
+      font-weight: 700;
+      vertical-align: middle;
+    }
   }
 }
 </style>

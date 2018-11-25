@@ -7,15 +7,17 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: "Digitool.io",
+    htmlAttrs: {
+      lang: 'en'
+    },
+    title: 'Digitool.io',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:500,700' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -46,7 +48,8 @@ module.exports = {
     '@nuxtjs/axios',
     ['@nuxtjs/google-tag-manager', {
       id: 'GTM-TGLJQWL'
-    }]
+    }],
+    '@nuxtjs/toast'
   ],
 
   /*
@@ -57,10 +60,14 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-
     }
   },
   kenticocloud: {
     projectId: 'ba55e5f7-e14b-42bc-aaac-63d470ce44ae'
+  },
+  toast: {
+    position: 'bottom-right',
+    duration: 1000,
+    containerClass: 'toasted-custom'
   }
 }

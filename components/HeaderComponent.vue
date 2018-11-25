@@ -13,9 +13,6 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto">
-        <!-- <b-nav-item href="#">
-          About us
-        </b-nav-item> -->
         <b-nav-item href="https://digitool.typeform.com/to/PokM6C" target="_window">
           Suggest tool
         </b-nav-item>
