@@ -8,7 +8,6 @@
         v-if="hasReview(post)"
         :to="'/tool/' + post.url_slug.value"
         :title="'Read review of ' + post.name.text"
-        target="_blank"
         >
         <img
           class="card-img-top"
@@ -50,8 +49,7 @@
         <nuxt-link
           v-if="hasReview(post)"
           :to="'/tool/' + post.url_slug.value"
-          :title="'Read review of ' + post.name.text"
-          target="_blank">
+          :title="'Read review of ' + post.name.text">
           <span class="card-title h5 d-inline-block mt-2 mb-3">{{ post.name.text }}</span>
           <p class="card-text">
             {{ post.short_description.text }}

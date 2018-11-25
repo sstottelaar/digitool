@@ -4,9 +4,9 @@
     toggleable="md"
     type="light">
 
-    <b-navbar-brand class="mt-1 mb-1 ml-2" href="/">
-      <img src="@/static/digitool-logo.svg" alt="">
-    </b-navbar-brand>
+    <b-link class="navbar-brand" to="/" title="Digitool.io - back to home">
+      <img src="@/static/digitool-logo.svg" alt="Digitool.io" />
+    </b-link>
 
     <b-navbar-toggle target="nav_collapse" class="custom-toggler">
     </b-navbar-toggle>
