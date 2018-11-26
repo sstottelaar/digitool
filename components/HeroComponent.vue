@@ -3,9 +3,12 @@
     <b-container>
       <b-row class="justify-content-center">
         <b-col class="col-11 col-md-9">
-          <div class="hero-inner">
+          <div class="hero-inner text-center">
             <h1 class="hero-title mb-3 text-light text-center">Discover upcoming digital marketing tools</h1>
             <span class="hero-slogan opacity-80 d-block text-light text-center">Digitool is the curated place for online marketing enthusiasts who are looking for the latest digital marketing tools.</span>
+            <a class="d-inline-block suggest-button mt-4" href="https://digitool.typeform.com/to/PokM6C" title="Suggest a tool">
+              <span class="suggest-button-text">Suggest tool</span>
+            </a>
           </div>
         </b-col>
       </b-row>
@@ -14,8 +17,12 @@
 </template>
 
 <script>
-export default {
+import { PlusIcon } from 'vue-feather-icons'
 
+export default {
+  components: {
+    PlusIcon
+  }
 }
 </script>
 
@@ -40,6 +47,33 @@ export default {
     .hero-slogan {
       opacity: 0.8;
       font-size: 1.1rem;
+    }
+
+    .suggest-button {
+      padding: 0.75rem 1rem;
+      opacity: 0.5;
+      transition: opacity 200ms ease;
+      font-size: 1rem;
+      color: #FFF;
+      vertical-align: bottom;
+      line-height: 1;
+      font-weight: 700;
+
+      .suggest-button-text {
+        margin-right: 0.1rem;
+      }
+
+      svg {
+        vertical-align: baseline;
+      }
+
+      &:hover {
+        background: #FFF;
+        color: #3653f4;
+        opacity: 1;
+        text-decoration: none;
+        box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+      }
     }
   }
 }

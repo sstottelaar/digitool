@@ -170,6 +170,7 @@ export default {
     .feather.feather-arrow-right {
         transition: margin-left 200ms ease, transform 200ms ease;
         margin-left: 5px;
+        margin-top: -2px;
       }
 
       &:hover {
