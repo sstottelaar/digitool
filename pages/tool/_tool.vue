@@ -1,53 +1,63 @@
 <template>
-  <b-container fluid>
-    <b-row>
-      <b-col class="post-hero">
-        <!-- Empty hero -->
-      </b-col>
-    </b-row>
-    <b-row class="justify-content-center">
-      <b-col class="col-12 col-md-8 col-lg-6 col-xl-6 post-wrapper">
+  <div>
+    <b-container fluid>
+      <b-row>
+        <b-col class="post-hero">
+          <!-- Empty hero -->
+        </b-col>
+      </b-row>
+    </b-container>
+    <b-container>
+      <b-row class="justify-content-center">
+        <b-col class="col-12 col-md-10 col-lg-8 post-wrapper">
 
-        <b-img
-           v-lazy="post.screenshot.assets[0].url + '?w=1000&q=100&fm=png&auto=format'"
-           :alt="post.name.text"
-           fluid
-           class="tool-screenshot"
-        />
+          <b-img
+            :src="post.screenshot.assets[0].url + '?w=1000&q=100&fm=png&auto=format'"
+            :alt="post.name.text"
+            fluid
+            class="tool-screenshot"
+          />
 
-        <h1 class="post-title mt-5">{{ post.name.value }}</h1>
+          <h1 class="post-title mt-5">{{ post.name.value }}</h1>
 
-        <div class="tool-review-container" v-html="post.article_about_tool.value"></div>
+          <div class="tool-review-container" v-html="post.article_about_tool.value"></div>
 
-        <h2 class="post-rating text-center">{{ post.rating.value }} / 5</h2>
+          <h2 class="post-rating text-center">{{ post.rating.value }} / 5</h2>
 
-        <hr class="mb-5 mt-5">
+          <hr class="mb-5 mt-5">
 
-        <b-row class="justify-content-center trial-container">
-          <b-col class="col-12 col-md-6 text-center">
-            <span class="title d-block">Ready to try it out?</span>
-          </b-col>
-          <b-col class="col-12 col-md-6 text-center">
-            <a :href="post.website_url.value" class="button d-block" :title="'Check out ' + post.name.value">Check out {{ post.name.value }}</a>
-          </b-col>
-        </b-row>
+          <b-row class="justify-content-center trial-container">
+            <b-col class="col-12 col-md-6 text-center">
+              <span class="title d-block">Ready to try it out?</span>
+            </b-col>
+            <b-col class="col-12 col-md-6 text-center">
+              <a :href="post.website_url.value" class="button d-block" :title="'Check out ' + post.name.value">Check out {{ post.name.value }}</a>
+            </b-col>
+          </b-row>
 
-      </b-col>
-    </b-row>
-  </b-container>
+        </b-col>
+      </b-row>
+    </b-container>
+
+    <back-to-top></back-to-top>
+
+  </div>
 </template>
 
 <script>
+import BackToTop from '@/components/BackToTopComponent'
 
 export default {
+  components: {
+    BackToTop
+  },
   data(){
     return {
-      post: [],
-      loading: false
+      post: []
     }
   },
-  async asyncData({ app }) {
-    let postData = await app.$axios.get("https://digitool-api.herokuapp.com/api/tools/hotjar")
+  async asyncData({ app, params }) {
+    let postData = await app.$axios.get("https://digitool-api.herokuapp.com/api/tools/" + params.tool)
     return {
       post: postData.data
     }
@@ -64,10 +74,6 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  font-family: "Open Sans", sans-serif;
-}
-
 .post-hero{
   background: #3653f4;
   background-image: url('../../static/hero-bg.svg');
@@ -103,6 +109,11 @@ body {
     color: #3653f4;
     font-size: 1.4rem;
     font-weight: 700;
+  }
+
+  .tool-review-container img{
+    width: 100%;
+    margin-bottom: 1rem;
   }
 }
 

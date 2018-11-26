@@ -43,7 +43,6 @@ export default {
     font-weight: 600;
     padding: 0.4rem 0.6rem;
     transition: background-color 200ms ease, box-shadow 200ms ease;
-    border-radius: 0.2rem;
     font-size: 0.9rem;
 
     &:hover,

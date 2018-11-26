@@ -10,17 +10,10 @@
           :key="index" :post="post">
         </card-component>
       </b-row>
-
-      <!-- Back to top -->
-      <b-row>
-        <b-col class="col-12 text-center">
-          <a class="back-to-top d-inline-block" onclick="window.scrollTo(0,0)">
-            <img src="@/static/back-to-top.svg" width="18px">
-          </a>
-        </b-col>
-      </b-row>
-
     </b-container>
+
+    <back-to-top></back-to-top>
+
   </div>
 </template>
 
@@ -28,13 +21,15 @@
 import CardComponent from '@/components/CardComponent'
 import LoaderComponent from '@/components/LoaderComponent'
 import HeroComponent from '@/components/HeroComponent'
+import BackToTop from '@/components/BackToTopComponent'
 
 export default {
   name: "Homepage",
   components: {
     CardComponent,
     LoaderComponent,
-    HeroComponent
+    HeroComponent,
+    BackToTop
   },
   data(){
     return {
@@ -70,32 +65,5 @@ body {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
-}
-
-.back-to-top {
-  box-shadow: 0 5px 12px #e6e7eb;
-  line-height: 1;
-  padding: .75rem .8rem;
-  border-radius: 3rem;
-  transition: box-shadow .2s ease;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 10px 12px #e6e7eb;
-  }
-}
-
-// Custom CSS for toasted notifications
-.toasted-custom {
-  .toasted {
-    background: #FFF;
-    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.05);
-    color: #3653f4;
-    padding: 1.5rem;
-  }
-}
-
-.toasted-container.bottom-right {
-  bottom: 5%;
 }
 </style>

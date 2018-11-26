@@ -19,6 +19,10 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
 /* open-sans-regular - latin */
 @font-face {
   font-family: 'Open Sans';
@@ -93,12 +97,13 @@ export default {
 }
 
 // Custom CSS for toasted notifications
-.toasted-custom {
+.toasted-container.toasted-custom {
   .toasted {
     background: #FFF;
     box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.05);
     color: #3653f4;
     padding: 1.5rem;
+    font-weight: 700;
   }
 }
 

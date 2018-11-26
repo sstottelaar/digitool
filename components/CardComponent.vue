@@ -37,9 +37,8 @@
         v-if="hasReview(post)"
         :to="'/tool/' + post.url_slug.value"
         :title="'Read review of ' + post.name.text"
-        class="reviewed"
-        target="_blank">
-        Read review
+        class="reviewed">
+        <span>Read review</span><arrow-right-icon width="14" height="14" stroke-width="3"></arrow-right-icon>
       </nuxt-link>
 
       <div class="card-body">
@@ -97,13 +96,14 @@
 </template>
 
 <script>
-import { ThumbsUpIcon } from 'vue-feather-icons'
+import { ThumbsUpIcon, ArrowRightIcon } from 'vue-feather-icons'
 
 export default {
   name: "CardComponent",
   props: ["post"],
   components: {
-    ThumbsUpIcon
+    ThumbsUpIcon,
+    ArrowRightIcon
   },
   methods: {
     hasReview(payload) {
@@ -150,6 +150,7 @@ export default {
 
   .card-img-top {
     border-bottom: 1px solid #f4f4f6;
+    position: relative;
   }
 
   .reviewed {
@@ -157,16 +158,32 @@ export default {
     display: block;
     position: absolute;
     color: #FFF;
-    font-weight: 700;
     font-size: 0.9rem;
     right: 0;
-    padding: 0.4rem 0.6rem;
-    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+    top: 0;
+    padding: 0.3rem 0.6rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.1);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+
+    .feather.feather-arrow-right {
+        transition: margin-left 200ms ease, transform 200ms ease;
+        margin-left: 5px;
+      }
+
+      &:hover {
+        .feather.feather-arrow-right {
+          margin-left: 5px;
+          transform: rotate(-45deg);
+        }
+      }
   }
 
   .card-body {
     padding: 1.75rem;
     cursor: pointer;
+    position: relative;
 
     .card-title {
       font-family: 'Poppins', sans-serif;

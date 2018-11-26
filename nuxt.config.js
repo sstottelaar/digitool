@@ -67,7 +67,7 @@ module.exports = {
   },
   toast: {
     position: 'bottom-right',
-    duration: 1000,
+    duration: 1500,
     containerClass: 'toasted-custom'
   }
 }
