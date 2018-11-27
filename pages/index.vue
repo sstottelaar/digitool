@@ -38,7 +38,7 @@ export default {
   },
   async asyncData({ app }) {
     let postData = await app.$axios.get("https://digitool-api.herokuapp.com/api/tools/")
-    let categoryData = await app.$axios.get("https://digitool-api.herokuapp.com/api/tools/categories/")
+    let categoryData = await app.$axios.get("https://digitool-api.herokuapp.com/api/categories/")
     return {
       posts: postData.data,
       categories: categoryData.data
