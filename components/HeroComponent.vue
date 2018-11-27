@@ -68,8 +68,8 @@ export default {
       }
 
       &:hover {
-        background: #FFF;
-        color: #3653f4;
+        background: #F79824;
+        color: #FFF;
         opacity: 1;
         text-decoration: none;
         box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);

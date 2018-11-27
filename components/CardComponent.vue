@@ -32,16 +32,17 @@
       </a>
       <!-- /Header Link -->
 
-      <!-- Read review block -->
-      <nuxt-link
-        v-if="hasReview(post)"
-        :to="'/tool/' + post.url_slug.value"
-        :title="'Read review of ' + post.name.text"
-        class="reviewed">
-        <span>Read review</span><arrow-right-icon width="14" height="14" stroke-width="3"></arrow-right-icon>
-      </nuxt-link>
-
       <div class="card-body">
+
+        <!-- Read review block -->
+        <nuxt-link
+          v-if="hasReview(post)"
+          :to="'/tool/' + post.url_slug.value"
+          :title="'Read review of ' + post.name.text"
+          class="reviewed text-uppercase">
+          <span>Read review</span>
+          <arrow-right-icon width="14" height="14" stroke-width="3"></arrow-right-icon>
+        </nuxt-link>
 
         <!-- Post body Link -->
         <!-- @TODO: Refactor to only have one component for both internal and external link -->
@@ -124,7 +125,9 @@ export default {
       try {
         this.post.likes.count++
         this.$toast.show("You liked a tool, awesome! 🤘")
-        await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.id + "/like")
+        await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.id + "/like", {
+          method: 'PUT'
+        })
       } catch (e) {
         console.log(e)
         this.$toast.error(e)
@@ -149,23 +152,22 @@ export default {
   }
 
   .card-img-top {
-    border-bottom: 1px solid #f4f4f6;
+    // border-bottom: 1px solid #f4f4f6;
     position: relative;
   }
 
   .reviewed {
-    background: #3653f4;
+    background: #F79824;
     display: block;
     position: absolute;
     color: #FFF;
     font-size: 0.9rem;
     right: 0;
     top: 0;
-    padding: 0.3rem 0.6rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.1);
-    text-transform: uppercase;
+    padding: 0.4rem 0.6rem;
     letter-spacing: 0.1rem;
     font-weight: 700;
+    transition: box-shadow 200ms ease;
 
     .feather.feather-arrow-right {
         transition: margin-left 200ms ease, transform 200ms ease;
@@ -174,6 +176,8 @@ export default {
       }
 
       &:hover {
+        box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.1);
+
         .feather.feather-arrow-right {
           margin-left: 5px;
           transform: rotate(-45deg);

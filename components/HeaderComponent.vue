@@ -13,8 +13,8 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="https://digitool.typeform.com/to/PokM6C" target="_window">
-          Suggest tool
+        <b-nav-item class="text-uppercase" href="https://digitool.typeform.com/to/PokM6C" target="_window">
+          Submit tool
         </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
@@ -39,18 +39,35 @@ export default {
   }
 
   .nav-link {
-    color: #acafbf;
-    font-weight: 600;
-    padding: 0.4rem 0.6rem;
-    transition: background-color 200ms ease, box-shadow 200ms ease;
+    // color: #acafbf;
+    font-weight: 700;
+    padding: 0.5rem 0.6rem;
+    transition: background-color 200ms ease, box-shadow 200ms ease, border-bottom 200ms ease;
     font-size: 0.9rem;
+    position: relative;
+    display: block;
+    color: rgba(54, 83, 244, 1);
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #F79824;
+      transition: transform 150ms ease;
+      transform: scale(0);
+    }
+
+    &:hover::after {
+      transform: scale(1);
+    }
 
     &:hover,
     &:active,
     &:focus {
-      color: rgba(54, 83, 244, 0.75);
-      background-color: rgba(54, 83, 244, 0.2);
-      box-shadow: 0 0.25rem 0.75rem rgba(54, 83, 244, .1);
+      color: rgba(54, 83, 244, 1);
+      // background-color: rgba(54, 83, 244, 0.2);
+      // box-shadow: 0 0.25rem 0.75rem rgba(54, 83, 244, .1);
       outline: none;
     }
   }
