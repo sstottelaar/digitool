@@ -126,7 +126,7 @@ export default {
         this.post.likes.count++
         this.$toast.show("You liked a tool, awesome! 🤘")
         await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.id + "/like", {
-          method: 'PUT'
+          method: "PUT"
         })
       } catch (e) {
         console.log(e)
