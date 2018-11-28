@@ -138,6 +138,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Import variables
+@import url('@/assets/scss/variables.scss');
+
 .card {
   border-radius: 0;
   transition: box-shadow 200ms ease;
