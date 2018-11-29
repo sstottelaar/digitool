@@ -125,7 +125,7 @@ export default {
       try {
         this.post.likes.count++
         this.$toast.show("You liked a tool, awesome! 🤘")
-        await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.id + "/like", {
+        await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.codename + "/like", {
           method: "PUT"
         })
       } catch (e) {
@@ -155,7 +155,7 @@ export default {
   }
 
   .card-img-top {
-    // border-bottom: 1px solid #f4f4f6;
+    border-bottom: 1px solid #f4f4f6;
     position: relative;
   }
 
