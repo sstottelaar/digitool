@@ -129,6 +129,9 @@ export default {
         await fetch("https://digitool-api.herokuapp.com/api/tools/" + payload.system.codename + "/like", {
           method: "PUT"
         })
+        mixpanel.track("Liked tool", {
+          "tool": payload.system.codename
+        })
       } catch (e) {
         console.log(e)
         this.$toast.error(e)
