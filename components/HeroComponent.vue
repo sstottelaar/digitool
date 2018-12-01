@@ -4,11 +4,9 @@
       <b-row class="justify-content-center">
         <b-col class="col-11 col-md-9">
           <div class="hero-inner text-center">
-            <h1 class="hero-title mb-3 text-light text-center">Discover upcoming digital marketing tools</h1>
-            <span class="hero-slogan opacity-80 d-block text-light text-center">Digitool is the curated place for online marketing enthusiasts who are looking for the latest digital marketing tools.</span>
-            <a class="d-inline-block suggest-button mt-4" href="https://digitool.typeform.com/to/PokM6C" title="Suggest a tool">
-              <span class="suggest-button-text">Suggest tool</span>
-            </a>
+            <h1 class="hero-title mb-3 text-light text-center">Discover powerful digital marketing tools.</h1>
+            <span class="hero-slogan opacity-80 d-block text-light text-center">Digitool is the curated place for digital marketing enthusiasts who are looking for powerful tools to work smarter and more efficient.</span>
+            <router-link class="hero-button d-inline-block mt-3" to="/about-us">About us</router-link>
           </div>
         </b-col>
       </b-row>
@@ -29,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .hero-container {
   background: url('../static/hero-bg.svg');
-  background-color: #3653f4;
+  background-color: $primary-color;
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 100% 250px;
@@ -49,7 +47,7 @@ export default {
       font-size: 1.1rem;
     }
 
-    .suggest-button {
+    .hero-button {
       padding: 0.75rem 1rem;
       opacity: 0.5;
       transition: opacity 200ms ease;
@@ -59,12 +57,8 @@ export default {
       line-height: 1;
       font-weight: 700;
 
-      .suggest-button-text {
+      .hero-button-text {
         margin-right: 0.1rem;
-      }
-
-      svg {
-        vertical-align: baseline;
       }
 
       &:hover {

@@ -75,8 +75,8 @@ export default {
 
 <style lang="scss">
 .post-hero{
-  background: #3653f4;
-  background-image: url('../../static/hero-bg.svg');
+  background: $primary-color;
+  background-image: url('~static/hero-bg.svg');
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 100% 250px;
@@ -106,7 +106,7 @@ export default {
   .tool-review-container h2,
   .post-rating {
     font-family: "Poppins", sans-serif;
-    color: #3653f4;
+    color: $primary-color;
     font-size: 1.4rem;
     font-weight: 700;
   }
@@ -122,7 +122,7 @@ export default {
   font-size: 1.1rem;
 
   .button {
-    background-color: #3653f4;
+    background-color: $primary-color;
     border: 0;
     box-shadow: 0 5px 10px rgba(0,0,0,.1);
     font-size: 1.1rem;

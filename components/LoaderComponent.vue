@@ -19,7 +19,7 @@ export default {
   height: 25px;
   border: 3px solid rgba(255,255,255,.3);
   border-radius: 50%;
-  border-top-color: #3653f4;
+  border-top-color: $primary-color;
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
   margin: 0 auto;

@@ -13,6 +13,9 @@
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav class="ml-auto">
+        <b-nav-item to="/about-us">
+          About us
+        </b-nav-item>
         <b-nav-item class="primary-nav" href="https://digitool.typeform.com/to/PokM6C" target="_window">
           Submit tool
         </b-nav-item>
@@ -30,24 +33,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/variables.scss";
-
 .navbar {
   background-color: #FFF;
-  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.05);
+  box-shadow: $box-shadow-light;
   padding: 0.75rem 1rem;
 
   .navbar-toggler {
     border: 0;
   }
 
+  .nav-link,
+  .primary-nav a {
+    padding: 0.35em 0.75rem;
+
+    &.active {
+      color: $support-color;
+    }
+  }
+
   .primary-nav a {
     background-color: $support-color;
     font-family: $font-family;
-    font-size: 0.9rem;
     font-weight: 600;
     color: #FFF;
-    padding: 0.35em 0.75rem;
     transition: box-shadow 150ms ease, background-color 150ms ease;
     border-radius: 0.2rem;
 

@@ -6,7 +6,8 @@
           <span class="footer-text text-light">
             <i class="logo-text">Digitool</i>
             | 👨‍💻 with 💖 in The Netherlands |
-            <a href="https://instagram.com/digitool.io" title="Follow on Instagram" target="_blank" class="text-light">Follow on Instagram</a> 📷
+            <a href="https://instagram.com/digitool.io" title="Follow on Instagram" target="_blank" class="text-light">Follow on Instagram</a> 📷|
+            <a href="https://www.linkedin.com/company/digitool-digital-marketing-tools/" title="Follow on LinkedIn" target="_blank" class="text-light">Follow on LinkedIn</a>
           </span>
         </b-col>
         <b-col class="col-12 text-center">

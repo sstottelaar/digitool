@@ -83,7 +83,8 @@
           >
             <thumbs-up-icon
               width="20"
-              height="20">
+              height="20"
+              class="custom-icon">
             </thumbs-up-icon>
             <span class="post-likes">
               {{ post.likes.count }}
@@ -138,16 +139,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Import variables
-@import url('@/assets/scss/variables.scss');
-
 .card {
   border-radius: 0;
   transition: box-shadow 200ms ease;
   border: 1px solid #e6e7eb;
 
   &:hover{
-    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.05);
+    box-shadow: $box-shadow-light;
   }
 
   a:hover {
@@ -194,7 +192,7 @@ export default {
     position: relative;
 
     .card-title {
-      font-family: 'Poppins', sans-serif;
+      font-family: $font-family-heading, sans-serif;
       color: #191a20;
       font-weight: 500;
       color: #191a20;
@@ -202,7 +200,7 @@ export default {
     }
 
     .card-text {
-      font-family: 'Open Sans', sans-serif;
+      font-family: $font-family, sans-serif;
       color: #9093a8;
       font-size: 1rem;
     }
@@ -218,13 +216,13 @@ export default {
       transition: box-shadow 200ms ease;
 
       &:hover {
-        box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.05);
+        box-shadow: $box-shadow-light;
       }
     }
 
     .feather-thumbs-up {
       stroke: #dee2e6;
-      transition: stroke 200ms ease;
+      transition: stroke 200ms ease, transform 50ms ease;
     }
 
     .likes {
@@ -232,12 +230,20 @@ export default {
       transition: color 200ms ease;
 
       &:hover {
-        color: #3653f4;
+        color: $primary-color;
 
         .feather-thumbs-up {
-          stroke: #3653f4;
+          stroke: $primary-color;
+          transform: rotate(-10deg);
         }
       }
+
+      &:active {
+        .feather-thumbs-up {
+          transform: rotate(10deg) scale(1.1);
+        }
+      }
+
     }
 
     .post-likes {

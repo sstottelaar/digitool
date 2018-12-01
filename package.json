@@ -20,6 +20,7 @@
     "firebase": "^5.5.8",
     "kenticocloud-nuxt-module": "^1.0.2",
     "nuxt": "^2.0.0",
+    "nuxt-sass-resources-loader": "^2.0.5",
     "rxjs": "^6.3.3",
     "vue-content-loader": "^0.2.1",
     "vue-feather-icons": "^4.7.1",

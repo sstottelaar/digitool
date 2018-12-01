@@ -49,7 +49,11 @@ module.exports = {
     ['@nuxtjs/google-tag-manager', {
       id: 'GTM-TGLJQWL'
     }],
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    ['nuxt-sass-resources-loader', [
+        '@/assets/scss/fonts.scss',
+        '@/assets/scss/variables.scss'
+    ]]
   ],
 
   /*

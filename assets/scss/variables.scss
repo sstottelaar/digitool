@@ -1,10 +1,33 @@
 // Colors
 $primary-color: #3653f4;
 $support-color: #F79824;
+$primary-color-font: #212529;
 
 // Fonts
 $font-family: "Open Sans", sans-serif;
-$font-family-heading: "Open Sans", sans-serif;
+$font-family-heading: "Poppins", sans-serif;
 
 // Utilities
 $box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+$box-shadow-light: 0 0.25rem 0.75rem rgba(0,0,0,.05);
+
+// Default settings
+body {
+  font-family: $font-family;
+  line-height: 1.5;
+}
+
+// Custom CSS for toasted notifications
+.toasted-container.toasted-custom {
+  .toasted {
+    background: #FFF;
+    box-shadow: $box-shadow-light;
+    color: $primary-color;
+    padding: 1.5rem;
+    font-weight: 700;
+  }
+}
+
+.toasted-container.bottom-right {
+  bottom: 5%;
+}

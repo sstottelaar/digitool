@@ -54,12 +54,6 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  color: #212529;
-  line-height: 1.5;
-  font-family: 'Open Sans', sans-serif;
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
