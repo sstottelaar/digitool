@@ -66,7 +66,12 @@ export default {
     return {
       title: this.post.name.value + " | Discover upcoming digital marketing tools",
       meta: [
-        { hid: "description", name: "description", content: this.post.short_description.value }
+        { hid: "description", name: "description", content: this.post.short_description.value },
+        { itemprop: "description", content: this.post.short_description.value },
+        { name: "og:title", content: this.post.name.value + " | Discover upcoming digital marketing tools" },
+        { name: "og:description", content: this.post.short_description.value },
+        { name: "og:image", content: this.post.screenshot.assets[0].url },
+        { itemprop: "image", content: this.post.screenshot.assets[0].url }
       ]
     }
   }

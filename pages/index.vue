@@ -47,7 +47,10 @@ export default {
   head: {
     titleTemplate: "Digitool | Discover upcoming digital marketing tools",
     meta: [
-      { hid: "description", name: "description", content: "Digitool is the place for online marketing enthusiasts who are looking for the latest digital marketing tools.eta description" }
+      { hid: "description", name: "description", content: "Digitool is the place for online marketing enthusiasts who are looking for the latest digital marketing tools." },
+      { itemprop: "description", content: "Digitool is the place for online marketing enthusiasts who are looking for the latest digital marketing tools." },
+      { name: "og:title", content: "Digitool | Discover upcoming digital marketing tools" },
+      { name: "og:description", content: "Digitool is the place for online marketing enthusiasts who are looking for the latest digital marketing tools." },
     ]
   }
 }
