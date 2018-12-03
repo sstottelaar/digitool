@@ -3,11 +3,46 @@
     <hero-component></hero-component>
     <b-container>
 
+      <b-row class="mt-5">
+        <b-col class="col-12">
+          <ul class="category-list">
+            <li
+              class="category-item d-inline-block"
+              :class="{ active : this.filter == ''}"
+              @click="applyFilter('')"
+              >
+                All
+              </li>
+
+            <li
+              class="category-item d-none d-sm-inline-block"
+              :class="{ active : filter == category.codename}"
+              v-for="(category, key) in this.categories"
+              :key="key"
+              @click="applyFilter(category.codename)">
+                {{ category.name }}
+            </li>
+
+            <b-dropdown :text="this.filter" class="float-right d-block d-sm-none custom-dropdown" variant="link" right>
+              <b-dropdown-item
+                :active="category.codename == filter"
+                v-for="category in this.categories"
+                :key="category.codename"
+                @click="applyFilter(category.codename)">
+                  {{ category.name }}
+              </b-dropdown-item>
+            </b-dropdown>
+
+          </ul>
+
+        </b-col>
+      </b-row>
+
       <!-- Posts -->
       <b-row class="mt-5">
         <card-component
-          v-for="(post, index) in posts"
-          :key="index" :post="post">
+          v-for="post in this.filteredPosts"
+          :key="post.name.value" :post="post">
         </card-component>
       </b-row>
     </b-container>
@@ -33,7 +68,25 @@ export default {
   },
   data(){
     return {
-      posts: []
+      posts: [],
+      categories: [],
+      filter: ""
+    }
+  },
+  methods: {
+    applyFilter (payload) {
+      this.filter = payload;
+    }
+  },
+  computed: {
+    filteredPosts () {
+      if(!this.filter == '') {
+        return this.posts.filter((post) => {
+          return post.category.value[0].codename == this.filter
+        })
+      } else {
+        return this.posts
+      }
     }
   },
   async asyncData({ app }) {
@@ -62,5 +115,38 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  border-bottom: 1px solid rgba(144, 147, 168, 0.3);
+
+  :first-child {
+    margin-right: -4px; // Fix weird spacing on the right
+  }
+
+  .category-item {
+    padding: 0.8rem;
+    color: #9093a8;
+    font-size: 0.9rem;
+    margin-bottom: -1px;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+      border-bottom: 2px solid $primary-color;
+      color: $primary-color;
+    }
+  }
+
+  .custom-dropdown {
+    .btn-link {
+      color: #9093a8;
+      text-decoration: none;
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
 }
 </style>
