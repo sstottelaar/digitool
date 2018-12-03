@@ -3,43 +3,48 @@
     <hero-component></hero-component>
     <b-container>
 
-      <b-row class="mt-5">
+      <b-row>
+        <b-col class="col-12 d-none d-lg-block">
+          <span v-b-toggle.collapse-category-list class="d-inline-block float-right">
+            <filter-icon class="icon-collapse"></filter-icon>
+          </span>
+        </b-col>
+      </b-row>
+      <b-row>
         <b-col class="col-12">
-          <ul class="category-list">
-            <li
-              class="category-item d-inline-block"
-              :class="{ active : this.filter == ''}"
-              @click="applyFilter('')"
-              >
-                All
-              </li>
 
-            <li
-              class="category-item d-none d-sm-inline-block"
-              :class="{ active : filter == category.codename}"
-              v-for="(category, key) in this.categories"
-              :key="key"
-              @click="applyFilter(category.codename)">
-                {{ category.name }}
-            </li>
-
-            <b-dropdown :text="this.filter" class="float-right d-block d-sm-none custom-dropdown" variant="link" right>
-              <b-dropdown-item
-                :active="category.codename == filter"
-                v-for="category in this.categories"
-                :key="category.codename"
-                @click="applyFilter(category.codename)">
+          <b-collapse id="collapse-category-list">
+            <ul class="category-list d-none d-lg-block">
+              <li
+                class="category-item d-inline-block"
+                :class="{ active : filter.codename == category.codename}"
+                v-for="(category, key) in this.categories"
+                :key="key"
+                @click="applyFilter(category)">
                   {{ category.name }}
-              </b-dropdown-item>
-            </b-dropdown>
+              </li>
+            </ul>
+          </b-collapse>     
 
-          </ul>
+          <b-dropdown
+            :text="this.filter.name"
+            class="float-right d-sm-block d-lg-none custom-dropdown"
+            variant="link"
+            right>
+            <b-dropdown-item
+              :active="category.codename == filter.codename"
+              v-for="category in this.categories"
+              :key="category.codename"
+              @click="applyFilter(category)">
+                {{ category.name }}
+            </b-dropdown-item>
+          </b-dropdown>
 
         </b-col>
       </b-row>
 
       <!-- Posts -->
-      <b-row class="mt-5">
+      <b-row class="mt-4">
         <card-component
           v-for="post in this.filteredPosts"
           :key="post.name.value" :post="post">
@@ -57,6 +62,7 @@ import CardComponent from '@/components/CardComponent'
 import LoaderComponent from '@/components/LoaderComponent'
 import HeroComponent from '@/components/HeroComponent'
 import BackToTop from '@/components/BackToTopComponent'
+import { FilterIcon } from 'vue-feather-icons'
 
 export default {
   name: "Homepage",
@@ -64,28 +70,35 @@ export default {
     CardComponent,
     LoaderComponent,
     HeroComponent,
-    BackToTop
+    BackToTop,
+    FilterIcon
   },
   data(){
     return {
       posts: [],
       categories: [],
-      filter: ""
+      filter: {
+        codename: "all",
+        name: "All"
+      }
     }
   },
   methods: {
     applyFilter (payload) {
-      this.filter = payload;
+      this.filter = {
+        name: payload.name,
+        codename: payload.codename
+      };
     }
   },
   computed: {
     filteredPosts () {
-      if(!this.filter == '') {
-        return this.posts.filter((post) => {
-          return post.category.value[0].codename == this.filter
-        })
-      } else {
+      if(this.filter.codename == "all") {        
         return this.posts
+      } else {
+        return this.posts.filter((post) => {
+          return post.category.value[0].codename == this.filter.codename
+        })
       }
     }
   },
@@ -146,6 +159,46 @@ export default {
       text-decoration: none;
       padding: 0.8rem;
       font-size: 0.9rem;
+    }
+  }
+}
+
+.icon-collapse {
+  stroke: $support-color;
+  cursor: pointer;
+}
+
+.collapsed {
+  .icon-collapse {
+    stroke: $primary-color;
+  }
+}
+
+.dropdown-toggle,
+.dropdown-toggle:hover {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  border: 1px solid #e6e7eb;
+  box-shadow: $box-shadow-light;
+  padding: 0;
+
+  .dropdown-item {
+    border-bottom: 1px solid #e6e7eb;
+    padding: 0.5rem 1.5rem;
+    color: lighten($primary-color-font, 30%);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &.active,
+    &:active {
+      background: lighten($primary-color, 40%);
+      color: $primary-color;
     }
   }
 }

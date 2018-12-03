@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-container">
+  <div class="hero-container mb-4">
     <b-container>
       <b-row class="justify-content-center">
         <b-col class="col-11 col-md-9">

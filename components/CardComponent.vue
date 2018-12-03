@@ -11,7 +11,7 @@
         >
         <img
           class="card-img-top"
-          src="~static/loading-asset.svg"
+          src="~/static/loading-asset.svg"
           v-lazy="getImage() + getImageProps(400, 50)"
           :alt="post.name.text"
           >
@@ -25,7 +25,7 @@
         >
         <img
           class="card-img-top"
-          src="~static/loading-asset.svg"
+          src="~/static/loading-asset.svg"
           v-lazy="getImage() + getImageProps(400, 50)"
           :alt="post.name.text"
           >
